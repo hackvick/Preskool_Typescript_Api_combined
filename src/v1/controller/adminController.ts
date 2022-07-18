@@ -47,7 +47,7 @@ export class AdminController extends Controller {
         
       const users_details = await AdminModels.ModelNewUser.find(
         { role: 3 },
-        "father_name mobileNum"
+        "father_name mobileNum fname gender"
       );
       const response = new resp_Object(
         MESSAGES.DATA_RETREIVE_SUCCESSFULLY,
