@@ -40,7 +40,7 @@ export class AdminController extends Controller {
   }
   @Security("Bearer")
   @Get("/users")
-  public async User_detailsfun(): Promise<responseType | any> {
+  public async User_detailsfun(): Promise<responseType | any>{
     try {
 
         console.log(this.userId,"userid token ");
@@ -75,7 +75,7 @@ export class AdminController extends Controller {
       father_name: string;
       religion: string;
     }
-  ): Promise<responseType | any> {
+  ): Promise<responseType | any>{
     try {
       const salt = await bcrypt.genSalt(10);
       const body = request;

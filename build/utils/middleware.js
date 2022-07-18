@@ -3,11 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const helperFun_1 = __importDefault(require("./helperFun"));
+const helperFun_1 = require("./helperFun");
 const http_status_codes_1 = __importDefault(require("http-status-codes"));
 function err_create(req, res, next) {
     const err = new Error("route not found");
-    const resp = new helperFun_1.default.error_Object(err.message, http_status_codes_1.default.NOT_FOUND);
+    const resp = new helperFun_1.error_Object(err.message, http_status_codes_1.default.NOT_FOUND);
     console.log(err.message, "create side");
     next(resp);
 }
@@ -24,7 +24,7 @@ function handle_err(err, req, res, next) {
     }
     else {
         res.json({
-            message: err.message,
+            message: err.message ? err.message : err,
             status_code: err.Status_Code || http_status_codes_1.default.BAD_REQUEST,
             stack: err.stack
         });

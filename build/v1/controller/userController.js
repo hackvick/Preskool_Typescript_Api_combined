@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("../../models/index");
-const helperFun_1 = __importDefault(require("../../utils/helperFun"));
+const helperFun_1 = require("../../utils/helperFun");
 const message_1 = require("../../utils/message");
 const http_status_codes_1 = __importDefault(require("http-status-codes"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
@@ -39,14 +39,14 @@ function New_users(req, res, next) {
             const finduser = yield index_1.UserModels.ModelUser.findOne({ email: body.email });
             console.log(finduser);
             if (finduser)
-                throw new helperFun_1.default.error_Object(message_1.MESSAGES.USER_ALREADY_REGISTERED, http_status_codes_1.default.UNPROCESSABLE_ENTITY);
+                throw new helperFun_1.error_Object(message_1.MESSAGES.USER_ALREADY_REGISTERED, http_status_codes_1.default.UNPROCESSABLE_ENTITY);
             body.password = yield bcrypt_1.default.hash(body.password, salt);
             // // const student_img = req.file.path;
             // // Student_Data.student_img = student_img;
             // assigning a auto generated username to the user
             Object.assign(body, { username: "PS" + yearcode + usercode });
             const UserSaved = yield new index_1.UserModels.ModelUser(body).save();
-            const response = new helperFun_1.default.resp_Object(message_1.MESSAGES.USER_REGISTERED_SUCCESSFULLY, http_status_codes_1.default.CREATED, UserSaved);
+            const response = new helperFun_1.resp_Object(message_1.MESSAGES.USER_REGISTERED_SUCCESSFULLY, http_status_codes_1.default.CREATED, UserSaved);
             res.send(response);
         }
         catch (error) {

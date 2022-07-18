@@ -9,7 +9,7 @@ const config_1 = require("../config/config");
 // Generate jwt token each time
 function genAuthToken(_id) {
     try {
-        const Access_token = jsonwebtoken_1.default.sign({ _id: _id }, config_1.Access_token_SecretKey, { expiresIn: "10m" });
+        const Access_token = jsonwebtoken_1.default.sign({ _id: _id }, config_1.Access_token_SecretKey, { expiresIn: "60m" });
         //   console.log(Access_token, "Access token generated ");
         const refresh_token = jsonwebtoken_1.default.sign({ _id: _id }, config_1.refresh_token_SecretKey, { expiresIn: "7d" });
         //   console.log(refresh_token, "Refresh token generated ");
@@ -26,13 +26,14 @@ function verify_token(req, res, next) {
     if (!token)
         throw { message: "Please Enter Access Token" };
     console.log(token + "verify side token");
-    let tokenslice = token.slice(7);
-    console.log(tokenslice, "tokenslice");
-    jsonwebtoken_1.default.verify(tokenslice, config_1.Access_token_SecretKey, function (err, decode) {
+    if (token.toLowerCase().startsWith('bearer')) {
+        token = token.slice('bearer'.length).trim();
+    }
+    jsonwebtoken_1.default.verify(token, config_1.Access_token_SecretKey, function (err, decode) {
         if (err)
-            throw res.status(401).send("token not valid or expire");
-        //   if(err) res.send(err)
-        //   req.decode = decode._id;
+            throw res.status(401).send({ message: "token not valid or expire", Status_Code: 401 });
+        // console.log(err,"err verify side");
+        req.body.user = decode;
         next();
     });
 }
