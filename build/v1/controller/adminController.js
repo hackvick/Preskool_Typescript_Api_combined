@@ -48,7 +48,7 @@ let AdminController = class AdminController extends tsoa_1.Controller {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 console.log(this.userId, "userid token ");
-                const users_details = yield index_1.AdminModels.ModelNewUser.find({ role: 3 }, "father_name mobileNum");
+                const users_details = yield index_1.AdminModels.ModelNewUser.find({ role: 3 }, "father_name mobileNum fname gender");
                 const response = new helperFun_1.resp_Object(message_1.MESSAGES.DATA_RETREIVE_SUCCESSFULLY, http_status_codes_1.default.OK, users_details);
                 return { CatchResponse: response };
             }
