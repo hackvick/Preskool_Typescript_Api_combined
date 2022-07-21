@@ -10,6 +10,7 @@ export interface userInterface{
     username:string,
     gender: string,
     father_name: string,
+    mother_name: string,
     religion: string
 
 }
@@ -51,6 +52,9 @@ const NewUserSchema = new Schema <userInterface>({
     },
     father_name:{
         type: String
+    },
+    mother_name:{
+       type:String
     },
     religion:{
         type: String
