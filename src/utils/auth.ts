@@ -27,7 +27,7 @@ function genAuthToken(_id: string | Types.ObjectId) {
 
 // Verification of jwt token
 function verify_token(req: Request, res: Response, next: NextFunction) {
-	let token: any = req.header("Authorization");
+	let token = req.header("Authorization");
 	if (!token) throw { message: "Please Enter Access Token" }
 	console.log(token + "verify side token");
 

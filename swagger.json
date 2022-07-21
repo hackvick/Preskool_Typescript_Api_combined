@@ -101,11 +101,7 @@
 				"tags": [
 					"Admin"
 				],
-				"security": [
-					{
-						"Bearer": []
-					}
-				],
+				"security": [],
 				"parameters": [],
 				"requestBody": {
 					"required": true,
