@@ -63,7 +63,7 @@ export class AdminController extends Controller {
       return { CatchError: error };
     }
   }
-  
+
   @Post("/user/create")
   public async New_Users(
     @Body()
@@ -77,6 +77,7 @@ export class AdminController extends Controller {
       gender: string;
       username: string;
       father_name: string;
+      mother_name: string;
       religion: string;
     }
   ): Promise<responseType | any>{
