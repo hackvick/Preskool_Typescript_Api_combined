@@ -15,7 +15,11 @@ import { MESSAGES } from "../../utils/message";
 import bcrypt from "bcrypt";
 import http from "http-status-codes";
 import { create } from "../../services/operation";
-import {Controller,Route,Get,Post,Put,Delete,Tags,Body,Security,Example,} from "tsoa";
+import { 
+    Controller,
+    Route,
+    Get,
+    Post,Put,Delete,Tags,Body,Security,Example,} from "tsoa";
 import { genAuthToken } from "../../utils/auth";
 // console.log(http,"http");
 let refreshTokens: any = [];
@@ -59,7 +63,7 @@ export class AdminController extends Controller {
       return { CatchError: error };
     }
   }
-  @Security("Bearer")
+  
   @Post("/user/create")
   public async New_Users(
     @Body()

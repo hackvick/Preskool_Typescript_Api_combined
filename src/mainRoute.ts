@@ -8,6 +8,3 @@ router.use("/user", userRoutes);
 router.use('/admin', adminRoutes);
 
 export = router
-
-
-
